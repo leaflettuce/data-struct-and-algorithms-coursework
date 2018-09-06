@@ -1,6 +1,7 @@
 
-# data files
+# data and img files
 /data/*
 *.csv
 *.docx
 *.vs
+*.png
