@@ -1,6 +1,7 @@
 
 # data and img files
 /data/*
+*/debug/*
 *.csv
 *.docx
 *.vs
