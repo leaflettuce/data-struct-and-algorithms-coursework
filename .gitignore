@@ -1,4 +1,3 @@
-
 # data and img files
 /data/*
 */debug/*
@@ -7,6 +6,12 @@
 *.vs
 *.png
 *.txt
+
+# CLEAN THIS UP - NO BUILD FILES
+/module_one/Lab1-3/*
+/module_two/Lab2-1/*
+/module_two/.vs/*
+/module_three/linkedlist/*
 
 # C++ files
 # Prerequisites
