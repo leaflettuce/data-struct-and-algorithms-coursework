@@ -1,0 +1,6 @@
+﻿  CSVparser.cpp
+  linkedlist.cpp
+e:\projects\snhu\cs-260\module_three\linkedlist\linkedlist\linkedlist.cpp(118): error C2563: mismatch in formal parameter list
+e:\projects\snhu\cs-260\module_three\linkedlist\linkedlist\linkedlist.cpp(118): error C2298: missing call to bound pointer to member function
+e:\projects\snhu\cs-260\module_three\linkedlist\linkedlist\linkedlist.cpp(176): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...

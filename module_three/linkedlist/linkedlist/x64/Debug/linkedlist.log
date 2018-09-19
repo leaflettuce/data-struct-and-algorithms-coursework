@@ -1,0 +1,3 @@
+﻿  linkedlist.cpp
+e:\projects\snhu\cs-260\module_three\linkedlist\linkedlist\linkedlist.cpp(263): warning C4018: '<': signed/unsigned mismatch
+  linkedlist.vcxproj -> E:\projects\snhu\cs-260\module_three\linkedlist\x64\Debug\linkedlist.exe
