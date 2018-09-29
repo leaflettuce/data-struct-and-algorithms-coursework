@@ -1,0 +1,5 @@
+﻿  VectorSorting.cpp
+e:\projects\snhu\cs-260\module_four\vectorsorting\vectorsorting\vectorsorting.cpp(96): warning C4018: '<': signed/unsigned mismatch
+e:\projects\snhu\cs-260\module_four\vectorsorting\vectorsorting\vectorsorting.cpp(211): warning C4018: '<': signed/unsigned mismatch
+e:\projects\snhu\cs-260\module_four\vectorsorting\vectorsorting\vectorsorting.cpp(289): warning C4018: '<': signed/unsigned mismatch
+  VectorSorting.vcxproj -> E:\projects\snhu\cs-260\module_four\VectorSorting\Debug\VectorSorting.exe
