@@ -1,6 +1,2 @@
-﻿  stdafx.cpp
-  CSVparser.cpp
-  HashTable.cpp
-  Generating Code...
-e:\projects\snhu\cs-260\module_five\hashtable\hashtable\hashtable.cpp(89): error C4716: 'HashTable::hash': must return a value
-e:\projects\snhu\cs-260\module_five\hashtable\hashtable\hashtable.cpp(256): error C4703: potentially uninitialized local pointer variable 'bidTable' used
+﻿  HashTable.cpp
+  HashTable.vcxproj -> E:\projects\snhu\cs-260\module_five\HashTable\Debug\HashTable.exe
