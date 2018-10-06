@@ -23,8 +23,6 @@ using namespace std;
 
 const unsigned int DEFAULT_SIZE = 179;
 
-// forward declarations
-double strToDouble(string str, char ch);
 
 // define a structure to hold bid information
 struct Bid {
@@ -37,9 +35,13 @@ struct Bid {
 	}
 };
 
+// forward declarations
+double strToDouble(string str, char ch);
+void displayBid(Bid bid);
 //============================================================================
 // Hash Table class definition
 //============================================================================
+
 
 /**
 * Define a class containing data members and methods to
@@ -49,8 +51,12 @@ class HashTable {
 
 private:
 	// FIXME (1): Define structures to hold bids
-
 	unsigned int hash(int key);
+	struct HashNode {
+		Bid bid;
+		HashNode *next;
+	};
+	vector<HashNode*> table;
 
 public:
 	HashTable();
@@ -65,7 +71,11 @@ public:
 * Default constructor
 */
 HashTable::HashTable() {
+	table.resize(DEFAULT_SIZE);
 	// FIXME (2): Initialize the structures used to hold bids
+	for (int i = 0; i < DEFAULT_SIZE; i++) {
+		table[i] = NULL;
+	}
 }
 
 /**
@@ -73,6 +83,17 @@ HashTable::HashTable() {
 */
 HashTable::~HashTable() {
 	// FIXME (3): Implement logic to free storage when class is destroyed
+	for (int i = 0; i < DEFAULT_SIZE; ++i)
+	{
+		HashNode* current = table[i];
+		while (current != NULL)
+		{
+			HashNode* prev = current;
+			current = current->next;
+			delete prev;
+		}
+	}
+	table.resize(0);
 }
 
 /**
@@ -86,6 +107,7 @@ HashTable::~HashTable() {
 */
 unsigned int HashTable::hash(int key) {
 	// FIXME (4): Implement logic to calculate a hash value
+	return (key % DEFAULT_SIZE);
 }
 
 /**
@@ -95,6 +117,31 @@ unsigned int HashTable::hash(int key) {
 */
 void HashTable::Insert(Bid bid) {
 	// FIXME (5): Implement logic to insert a bid
+	int bucket = hash(stoi(bid.bidId));   // stoi - string to int
+	// if collision append to end of linked list
+	if (table[bucket] != NULL) {
+		HashNode *tmpCheck = table[bucket];
+
+		// new node to add
+		HashNode *newTable = new HashNode();
+		newTable->bid = bid;
+		newTable->next = NULL;
+
+		// iter to last in linked list
+		while (tmpCheck->next != NULL) {
+			tmpCheck = tmpCheck->next;
+		}
+
+		// Append new bid
+		tmpCheck->next = newTable;
+	}
+
+	else {
+		// Add bid to bucket (first entry)
+		table[bucket] = new HashNode();
+		table[bucket]->bid = bid;
+		table[bucket]->next = NULL;
+	}
 }
 
 /**
@@ -102,6 +149,13 @@ void HashTable::Insert(Bid bid) {
 */
 void HashTable::PrintAll() {
 	// FIXME (6): Implement logic to print all bids
+	for (int i = 0; i < DEFAULT_SIZE; i++) {
+		HashNode *temp = table[i];
+		while (temp != NULL) {
+			displayBid(temp->bid);
+			temp = temp->next;
+		}
+	}
 }
 
 /**
@@ -111,6 +165,32 @@ void HashTable::PrintAll() {
 */
 void HashTable::Remove(string bidId) {
 	// FIXME (7): Implement logic to remove a bid
+	int bucket = hash(stoi(bidId));   // stoi - string to int
+
+	// if first element in bucket remove it
+	if (table[bucket]->bid.bidId == bidId) {
+		table[bucket] = table[bucket]->next;
+		return;
+	}
+
+	// If more than one element in bucket, iterate and drop one in question:
+	HashNode *temp = table[bucket]->next;
+	HashNode *prevTemp = table[bucket];
+
+	while (temp != NULL && temp->bid.bidId != bidId) {
+		prevTemp = temp;
+		temp = temp->next;
+	}
+
+	// if not found, remove
+	if (temp == NULL) {
+		return;
+	}
+	// else remove current iter (temp)
+	else {
+		prevTemp->next = temp->next;
+		return;
+	}
 }
 
 /**
@@ -122,7 +202,17 @@ Bid HashTable::Search(string bidId) {
 	Bid bid;
 
 	// FIXME (8): Implement logic to search for and return a bid
+	int bucket = hash(stoi(bidId));   // stoi - string to int
+	HashNode *temp = table[bucket];
 
+	// iterate and return when found
+	while (temp != NULL) {
+		if (temp->bid.bidId == bidId) {
+			bid = temp->bid;
+			return bid;
+		}
+		temp = temp->next;
+	}
 	return bid;
 }
 
@@ -136,7 +226,7 @@ Bid HashTable::Search(string bidId) {
 * @param bid struct containing the bid info
 */
 void displayBid(Bid bid) {
-	cout << bid.bidId << ": " << bid.title << " | " << bid.amount << " | "
+	cout << "Key " << (stoi(bid.bidId) % DEFAULT_SIZE) << ": " << bid.bidId << ": " << bid.title << " | " << bid.amount << " | "
 		<< bid.fund << endl;
 	return;
 }
@@ -220,7 +310,7 @@ int main(int argc, char* argv[]) {
 	clock_t ticks;
 
 	// Define a hash table to hold all the bids
-	HashTable* bidTable;
+	HashTable* bidTable = new HashTable();
 
 	Bid bid;
 
