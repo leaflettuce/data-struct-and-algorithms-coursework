@@ -4,6 +4,7 @@
 // Version     : 1.0
 // Copyright   : Copyright © 2017 SNHU COCE
 // Description : Hello World in C++, Ansi-style
+// Date        : 10.06.2018
 //============================================================================
 
 #include "stdafx.h"
