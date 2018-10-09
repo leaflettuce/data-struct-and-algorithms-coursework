@@ -1,5 +1,2 @@
-﻿  stdafx.cpp
-  BinarySearchTree.cpp
-e:\projects\snhu\cs-260\module_six\binarysearchtree\binarysearchtree\binarysearchtree.cpp(185): error C2660: 'remove': function does not take 3 arguments
-  CSVparser.cpp
-  Generating Code...
+﻿  BinarySearchTree.cpp
+  BinarySearchTree.vcxproj -> E:\projects\snhu\cs-260\module_six\BinarySearchTree\Debug\BinarySearchTree.exe
